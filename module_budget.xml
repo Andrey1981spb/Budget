@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_budget" default="compile.module.budget">
+  <dirname property="module.budget.basedir" file="${ant.file.module_budget}"/>
+  
+  <property name="module.jdk.home.budget" value=""/>
+  <property name="module.jdk.bin.budget" value=""/>
+  <property name="module.jdk.classpath.budget" value=""/>
+  
+  <property name="compiler.args.budget" value="-encoding windows-1251 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="budget.output.dir" value="${module.budget.basedir}/out/production/budget"/>
+  <property name="budget.testoutput.dir" value="${module.budget.basedir}/out/test/budget"/>
+  
+  <path id="budget.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="budget.module.production.classpath">
+    <path refid="library.react.production.classpath"/>
+    <path refid="library.react-dom.production.classpath"/>
+    <path refid="library.babel.classpath"/>
+  </path>
+  
+  <path id="budget.runtime.production.module.classpath">
+    <pathelement location="${budget.output.dir}"/>
+    <path refid="library.react.production.classpath"/>
+    <path refid="library.react-dom.production.classpath"/>
+    <path refid="library.babel.classpath"/>
+  </path>
+  
+  <path id="budget.module.classpath">
+    <pathelement location="${budget.output.dir}"/>
+    <path refid="library.react.production.classpath"/>
+    <path refid="library.react-dom.production.classpath"/>
+    <path refid="library.babel.classpath"/>
+  </path>
+  
+  <path id="budget.runtime.module.classpath">
+    <pathelement location="${budget.testoutput.dir}"/>
+    <pathelement location="${budget.output.dir}"/>
+    <path refid="library.react.production.classpath"/>
+    <path refid="library.react-dom.production.classpath"/>
+    <path refid="library.babel.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.budget">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.budget">
+    <patternset refid="excluded.from.module.budget"/>
+  </patternset>
+  
+  
+  <target name="compile.module.budget" depends="compile.module.budget.production,compile.module.budget.tests" description="Compile module budget"/>
+  
+  <target name="compile.module.budget.production" depends="register.custom.compilers" description="Compile module budget; production classes"/>
+  
+  <target name="compile.module.budget.tests" depends="register.custom.compilers,compile.module.budget.production" description="compile module budget; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.budget" description="cleanup module">
+    <delete dir="${budget.output.dir}"/>
+    <delete dir="${budget.testoutput.dir}"/>
+  </target>
+</project>
