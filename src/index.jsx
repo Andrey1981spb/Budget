@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import RenderRow from './renderRow';
+import styles from './styles.css';
 
-
-class Table extends React.Component {
+class Table extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            data: [
+                {'Date': '', 'Operation': '', 'Amount': '', 'Item_of_expenditure': '', 'Balance': ''}
+            ]
+        };
         this.getHeader = this.getHeader.bind(this);
         this.getRowsData = this.getRowsData.bind(this);
         this.getKeys = this.getKeys.bind(this);
-
-        const data = [
-            {'Date': '', 'Operation': '', 'Amount': '', 'Item of expenditure': '', 'Balance': ''}
-        ];
-
-        this.state = {
-            data: data
-        }
+        this.addRow = this.addRow.bind(this);
     }
 
     getKeys = function () {
@@ -26,7 +25,7 @@ class Table extends React.Component {
     getHeader = function () {
         var keys = this.getKeys();
         return keys.map((key, index) => {
-            return <th key={key}>{key.toUpperCase()}</th>
+            return <th key={key}>{key.toLowerCase()}</th>
         })
     };
 
@@ -36,11 +35,18 @@ class Table extends React.Component {
         return items.map((row, index) => {
             return <tr key={index}><RenderRow key={index} data={row} keys={keys}/></tr>
         })
-    }
+    };
+
+    addRow = function () {
+        this.state.data.push(this.state.data);
+    };
 
     render() {
         return (
-            <div>
+            <div className={styles}>
+                <button onClick={this.addRow}>
+                    Add new row
+                </button>
                 <table>
                     <thead>
                     <tr>{this.getHeader()}</tr>
@@ -50,7 +56,6 @@ class Table extends React.Component {
                     </tbody>
                 </table>
             </div>
-
         );
     }
 }
@@ -60,8 +65,3 @@ ReactDOM.render(
     document.getElementById("app")
 );
 
-const RenderRow = (props) => {
-    return props.keys.map((key, index) => {
-        return <td key={props.data[key]}>{props.data[key]}</td>
-    })
-};
