@@ -11,9 +11,11 @@
     "babel-preset-stage-0": "^6.24.1"
   },
   "dependencies": {
+    "environs": "^0.4.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.5"
   },
   "browserslist": [
     ">0.2%",

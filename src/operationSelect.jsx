@@ -7,9 +7,12 @@ class OperationSelect extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event) {
+    handleChange =(event) => {
         this.setState({value: event.target.value});
-    }
+        event.stopPropagation();
+        event.nativeEvent.stopImmediatePropagation();
+        this.props.onSelectOperation(event.target.value);
+    };
 
     render() {
         return (
