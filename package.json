@@ -2,17 +2,23 @@
   "name": "budget",
   "version": "1.0.0",
   "scripts": {
-    "start": "lite-server"
+    "start": "react-scripts start"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "lite-server": "^2.2.1"
+    "babel-preset-stage-0": "^6.24.1"
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  }
+    "react-dom": "^16.13.1",
+    "react-scripts": "2.1.1"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
